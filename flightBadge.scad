@@ -1,3 +1,9 @@
+/*
+Pilot Wing Badge for the (RC) Flight Team at the Netz39 Hackerspace in Magdeburg, Germany
+
+You may customize it using your own logo; provide it as a 50mm x 50mm .dxf file.
+*/
+
 module wings(){
 	linear_extrude(height = 2, center = false, convexity = 10, twist = 0)
 	polygon([[10,10],[35,10],[40,18],[90,18],[95,26],[45,26],[20,18]]);
@@ -9,14 +15,14 @@ module wings(){
 	polygon([[20,34],[50,34],[55,42],[120,42],[125,50],[25,50],[17,42]]);
 }
 
-module badge() {
+module badge(logo) {
 	wings();
 	mirror() wings();
 	translate([0,25,0])
 	cylinder(h=8,r=25);
 	linear_extrude(height = 10, center = false, convexity = 10, twist = 0)
 	translate([-25,0,0])
-	import("n39_logo_50mm.dxf");
+	import(logo);
 }
 
-scale(0.5)badge();
+scale(0.5)badge(logo="n39_logo_50mm.dxf");
